@@ -11,10 +11,11 @@
     // var_dump($Password);
 
     // Consulta
-    $consulta = mysqli_query($conexion, "SELECT `User`, `Password` FROM usuario WHERE User = '$Usuario'");
+    $consulta = mysqli_query($conexion, "SELECT * FROM usuario WHERE User = '$Usuario'");
     
     // Conversion de nuestra consulta a un array
     $fila = mysqli_fetch_array($consulta);
+
 
     // echo '<pre>';
     // var_dump($fila);
@@ -22,6 +23,18 @@
 
     if ($fila['User'] == $Usuario && $fila['Password'] == $encriptado)
     {
+        session_start();
+        
+        $_SESSION['Validar'] = true;
+
+        $_SESSION['IdUsuario'] = $fila['IdUsuario'];
+        $_SESSION['Nombre'] = $fila['Nombre'];
+        $_SESSION['Apellidos'] = $fila['Apellidos'];
+        $_SESSION['User'] = $fila['User'];
+        $_SESSION['Password'] = $fila['Password'];
+        $_SESSION['Nivel'] = $fila['Nivel'];
+        $_SESSION['Estado'] = $fila['Estado'];
+        $_SESSION['FechaRegistro'] = $fila['FechaRegistro'];
         header('Location: ../panel.php');
     }
     else
