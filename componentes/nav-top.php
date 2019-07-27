@@ -21,7 +21,7 @@
             <span class="fas fa-arrow-right float-right text-muted text-sm"></span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">Cerrar sesión</a>
+          <a href="controladores/salir.php" class="dropdown-item dropdown-footer">Cerrar sesión</a>
         </div>
       </li>
     </ul>

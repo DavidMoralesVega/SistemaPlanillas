@@ -1,11 +1,7 @@
 <?php
     session_start();
 
-    if ($_SESSION['Validar'] == true)
+    if ($_SESSION['Validar'] == false)
     {
-        echo 'Session success';
-    }
-    else
-    {
-        header('Location: ../index.php');
+        header('Location: index.php');
     }

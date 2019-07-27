@@ -46,7 +46,7 @@
                         </h3>
                         <ul class="nav nav-pills ml-auto p-2">
                             <li class="nav-item">
-                                <a class="btn btn-primary text-white">
+                                <a data-toggle="modal" data-target="#ModalNuevoUsuario" class="btn btn-primary text-white">
                                 <i class="fas fa-plus mr-2"></i>
                                 Nuevo</a>
                             </li>
@@ -75,15 +75,18 @@
                                 foreach ($ListaUsuarios as $key => $Usuario)
                                 {
                                     $Nivel = ($Usuario['Nivel'] == 'A') ? 'ADMINISTRADOR' : 'SECRETARIA';
-
+                                    $i++;
                                     echo '<tr>
-                                            <td>No</td>
+                                            <td>'.$i.'</td>
                                             <td>'.$Usuario['Nombre'].'</td>
                                             <td>'.$Usuario['Apellidos'].'</td>
                                             <td>'.$Nivel.'</td>
                                             <td>'.$Usuario['Estado'].'</td>
                                             <td>'.$Usuario['FechaRegistro'].'</td>
-                                            <td>Acciones</td>
+                                            <td>
+                                                <button class="btn btn-info btn-sm"><i class="fas fa-user-edit"></i></button>
+                                                <button class="btn btn-danger btn-sm"><i class="fas fa-user-times"></i></button>
+                                            </td>
                                         </tr>';
                                 }
                             ?>
@@ -106,3 +109,75 @@
     ?>
 </body>
 </html>
+
+<div class="modal fade" id="ModalNuevoUsuario">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Nuevo usuario</h4>
+        <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="controladores/usuario.php" method="POST">
+        <div class="modal-body">
+          <p class="text-center">Ingrese los datos del usuario</p>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+            <input name="UINombre" type="text" placeholder="Ingrese un nombre" class="form-control">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+            <input name="UIApellido" type="text" placeholder="Ingrese apellidos" class="form-control">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+            <input name="UIUser" disabled type="text" placeholder="Ingresar usuario" class="form-control">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-key"></i>
+              </span>
+            </div>
+            <input name="UIPassword" type="password" placeholder="Ingresar contraseña" class="form-control">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-key"></i>
+              </span>
+            </div>
+            <select name="UINivel" class="form-control">
+              <option disabled value="">Seleccionar nivel</option>
+              <option value="A">ADMINISTRADOR</option>
+              <option value="S">SECRETARIA</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>                            
+</div>
