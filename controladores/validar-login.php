@@ -21,7 +21,7 @@
     // var_dump($fila);
     // echo '/<pre>';
 
-    if ($fila['User'] == $Usuario && $fila['Password'] == $encriptado)
+    if ($fila['User'] == $Usuario && $fila['Password'] == $encriptado && $fila['Estado'] == 1)
     {
         session_start();
         

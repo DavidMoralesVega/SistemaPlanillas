@@ -84,7 +84,7 @@
                                             <td>'.$Usuario['Estado'].'</td>
                                             <td>'.$Usuario['FechaRegistro'].'</td>
                                             <td>
-                                                <button class="btn btn-info btn-sm"><i class="fas fa-user-edit"></i></button>
+                                                <button data-toggle="modal" data-target="#ModalActualizarUsuario" class="btn btn-info btn-sm"><i class="fas fa-user-edit"></i></button>
                                                 <button class="btn btn-danger btn-sm"><i class="fas fa-user-times"></i></button>
                                             </td>
                                         </tr>';
@@ -110,6 +110,7 @@
 </body>
 </html>
 
+<!-- MODAL INSERTAR USUARIO-->
 <div class="modal fade" id="ModalNuevoUsuario">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -119,7 +120,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="controladores/usuario.php" method="POST">
+      <form action="controladores/usuario.controlador.php" method="POST">
         <div class="modal-body">
           <p class="text-center">Ingrese los datos del usuario</p>
 
@@ -129,7 +130,7 @@
                 <i class="fas fa-user"></i>
               </span>
             </div>
-            <input name="UINombre" type="text" placeholder="Ingrese un nombre" class="form-control">
+            <input onkeypress="GenerarUsuario();" id="UINombre" onkeyup="Mayus(this);" name="UINombre" type="text" placeholder="Ingrese un nombre" class="form-control">
           </div>
 
           <div class="input-group mb-3">
@@ -138,7 +139,7 @@
                 <i class="fas fa-user"></i>
               </span>
             </div>
-            <input name="UIApellido" type="text" placeholder="Ingrese apellidos" class="form-control">
+            <input onkeypress="GenerarUsuario();" id="UIApellidos" onkeyup="Mayus(this);" name="UIApellido" type="text" placeholder="Ingrese apellidos" class="form-control">
           </div>
 
           <div class="input-group mb-3">
@@ -147,7 +148,98 @@
                 <i class="fas fa-user"></i>
               </span>
             </div>
-            <input name="UIUser" disabled type="text" placeholder="Ingresar usuario" class="form-control">
+            <input onkeypress="GenerarUsuario();" id="UICedulaIdentidad" onkeyup="Mayus(this);" name="UICedulaIdentidad" type="text" placeholder="Ingrese cédula de identidad" class="form-control">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+            <input id="UIUser" name="UIUser" type="text" placeholder="Ingresar usuario" class="form-control">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-key"></i>
+              </span>
+            </div>
+            <input name="UIPassword" type="password" placeholder="Ingresar contraseña" class="form-control">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-key"></i>
+              </span>
+            </div>
+            <select name="UINivel" class="form-control">
+              <option disabled value="">Seleccionar nivel</option>
+              <option value="A">ADMINISTRADOR</option>
+              <option value="S">SECRETARIA</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>                            
+</div>
+
+<!-- MODAL ACTUALIZAR USUARIO-->
+<div class="modal fade" id="ModalActualizarUsuario">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Actualizar usuario</h4>
+        <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="controladores/usuario.controlador.php" method="POST">
+        <div class="modal-body">
+          <p class="text-center">Ingrese los datos del usuario</p>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+            <input onkeypress="GenerarUsuario();" id="UINombre" onkeyup="Mayus(this);" name="UINombre" type="text" placeholder="Ingrese un nombre" class="form-control">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+            <input onkeypress="GenerarUsuario();" id="UIApellidos" onkeyup="Mayus(this);" name="UIApellido" type="text" placeholder="Ingrese apellidos" class="form-control">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+            <input onkeypress="GenerarUsuario();" id="UICedulaIdentidad" onkeyup="Mayus(this);" name="UICedulaIdentidad" type="text" placeholder="Ingrese cédula de identidad" class="form-control">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+            <input id="UIUser" name="UIUser" type="text" placeholder="Ingresar usuario" class="form-control">
           </div>
 
           <div class="input-group mb-3">
