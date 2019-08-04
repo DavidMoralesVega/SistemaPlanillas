@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="card-body table-responsive">
-                        <table id="TablaDinamica" class="display table table-bordered table-hover dataTable">
+                        <table id="TablaDinamica" class="display table table-bordered table-hover dataTable TablaUsuario">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -84,7 +84,7 @@
                                             <td>'.$Usuario['Estado'].'</td>
                                             <td>'.$Usuario['FechaRegistro'].'</td>
                                             <td>
-                                                <button data-toggle="modal" data-target="#ModalActualizarUsuario" class="btn btn-info btn-sm"><i class="fas fa-user-edit"></i></button>
+                                                <button id="btnEditarUsuario" IdUsuario="'.$Usuario["IdUsuario"].'" data-toggle="modal" data-target="#ModalActualizarUsuario" class="btn btn-info btn-sm"><i class="fas fa-user-edit"></i></button>
                                                 <button class="btn btn-danger btn-sm"><i class="fas fa-user-times"></i></button>
                                             </td>
                                         </tr>';
@@ -212,7 +212,7 @@
                 <i class="fas fa-user"></i>
               </span>
             </div>
-            <input onkeypress="GenerarUsuario();" id="UINombre" onkeyup="Mayus(this);" name="UINombre" type="text" placeholder="Ingrese un nombre" class="form-control">
+            <input id="UANombre" onkeyup="Mayus(this);" name="UINombre" type="text" placeholder="Ingrese un nombre" class="form-control">
           </div>
 
           <div class="input-group mb-3">
@@ -221,7 +221,7 @@
                 <i class="fas fa-user"></i>
               </span>
             </div>
-            <input onkeypress="GenerarUsuario();" id="UIApellidos" onkeyup="Mayus(this);" name="UIApellido" type="text" placeholder="Ingrese apellidos" class="form-control">
+            <input id="UAApellidos" onkeyup="Mayus(this);" name="UIApellido" type="text" placeholder="Ingrese apellidos" class="form-control">
           </div>
 
           <div class="input-group mb-3">
@@ -230,7 +230,7 @@
                 <i class="fas fa-user"></i>
               </span>
             </div>
-            <input onkeypress="GenerarUsuario();" id="UICedulaIdentidad" onkeyup="Mayus(this);" name="UICedulaIdentidad" type="text" placeholder="Ingrese cédula de identidad" class="form-control">
+            <input id="UACedulaIdentidad" onkeyup="Mayus(this);" name="UICedulaIdentidad" type="text" placeholder="Ingrese cédula de identidad" class="form-control">
           </div>
 
           <div class="input-group mb-3">
@@ -239,8 +239,9 @@
                 <i class="fas fa-user"></i>
               </span>
             </div>
-            <input id="UIUser" name="UIUser" type="text" placeholder="Ingresar usuario" class="form-control">
+            <input disabled id="UAUser" name="UIUser" type="text" placeholder="Ingresar usuario" class="form-control">
           </div>
+
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -248,16 +249,7 @@
                 <i class="fas fa-key"></i>
               </span>
             </div>
-            <input name="UIPassword" type="password" placeholder="Ingresar contraseña" class="form-control">
-          </div>
-
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="fas fa-key"></i>
-              </span>
-            </div>
-            <select name="UINivel" class="form-control">
+            <select id="UANivel" name="UANivel" class="form-control">
               <option disabled value="">Seleccionar nivel</option>
               <option value="A">ADMINISTRADOR</option>
               <option value="S">SECRETARIA</option>

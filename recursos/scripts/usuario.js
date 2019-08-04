@@ -21,3 +21,34 @@ function GenerarUsuario() {
 
     document.getElementById("UIUser").value = codigo;
 }
+
+$(".TablaUsuario tbody").on("click", "button#btnEditarUsuario", function() {
+
+    var IdUsuario = $(this).attr("IdUsuario");
+
+    var datos = new FormData();
+    datos.append("IdUsuario", IdUsuario);
+
+    $.ajax({
+        url: "ajax/usuario.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(response) {
+
+            $("#UANombre").val(response["Nombre"]);
+            $("#UAApellidos").val(response["Apellidos"]);
+            $("#UACedulaIdentidad").val(response["CedulaIdentidad"]);
+            $("#UAUser").val(response["User"]);
+            // Trabajar con el option #UANivel
+
+        }
+
+    })
+
+
+
+})
