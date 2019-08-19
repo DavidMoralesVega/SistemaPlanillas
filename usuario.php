@@ -80,8 +80,28 @@
                                             <td>'.$i.'</td>
                                             <td>'.$Usuario['Nombre'].'</td>
                                             <td>'.$Usuario['Apellidos'].'</td>
-                                            <td>'.$Nivel.'</td>
-                                            <td>'.$Usuario['Estado'].'</td>
+                                            <td>'.$Nivel.'</td>';
+
+                                    if ($Usuario["Estado"] != 0)
+                                    {
+                                      echo '<td> 
+                                              <button 
+                                              IdUsuario="'.$Usuario["IdUsuario"].'"
+                                              EstadoUsuario="0"
+                                              class="btn btn-success btnActivar">ACTIVO</button>
+                                            </td>';
+                                    }
+                                    else 
+                                    {
+                                      echo '<td>
+                                              <button 
+                                              IdUsuario="'.$Usuario["IdUsuario"].'" 
+                                              EstadoUsuario="1"
+                                              class="btn btn-danger btnActivar">PASIVO</button>
+                                            </td>';
+                                    }
+                                            
+                                    echo '        
                                             <td>'.$Usuario['FechaRegistro'].'</td>
                                             <td>
                                                 <button id="btnEditarUsuario"
@@ -154,7 +174,7 @@
                 <i class="fas fa-user"></i>
               </span>
             </div>
-            <input onkeypress="GenerarUsuario();" id="UICedulaIdentidad" onkeyup="Mayus(this);" name="UICedulaIdentidad" type="text" placeholder="Ingrese cédula de identidad" class="form-control">
+            <input pattern="[0-9]+" onchange="ValidarCI();" onkeypress="GenerarUsuario();" id="UICedulaIdentidad" onkeyup="Mayus(this);" name="UICedulaIdentidad" type="text" placeholder="Ingrese cédula de identidad" class="form-control">
           </div>
 
           <div class="input-group mb-3">

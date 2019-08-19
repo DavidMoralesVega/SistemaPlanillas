@@ -68,9 +68,6 @@ $(".TablaUsuario tbody").on("click", "button#btnEliminarUsuario", function() {
 
     var IdUsuario = $(this).attr("IdUsuario");
 
-    console.log(IdUsuario);
-
-
     var datos = new FormData();
     datos.append("IdUsuario", IdUsuario);
 
@@ -92,3 +89,69 @@ $(".TablaUsuario tbody").on("click", "button#btnEliminarUsuario", function() {
         }
     })
 })
+
+$(".btnActivar").click(function() {
+    var IdUsuario = $(this).attr("IdUsuario");
+    var EstadoUsuario = $(this).attr("EstadoUsuario");
+
+    var Datos = new FormData();
+    Datos.append("IdUsuarioActivar", IdUsuario);
+    Datos.append("EstadoActivar", EstadoUsuario);
+
+    $.ajax({
+        url: "ajax/usuario.ajax.php",
+        method: "POST",
+        data: Datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(response) {}
+    })
+
+    if (EstadoUsuario == 0) {
+        $(this).removeClass('btn-success');
+        $(this).addClass('btn-danger');
+        $(this).html('PASIVO');
+        $(this).attr('EstadoUsuario', 1);
+    } else {
+        $(this).removeClass('btn-danger');
+        $(this).addClass('btn-success');
+        $(this).html('ACTIVO');
+        $(this).attr('EstadoUsuario', 0);
+    }
+
+})
+
+/* Problema con la plantilla
+("#UICedulaIdentidad").change(function() {
+    alert("Hola evento change");
+})*/
+
+function ValidarCI() {
+
+    $(".alert").remove();
+
+    var CI = $("#UICedulaIdentidad").val();
+
+    var DatosValidar = new FormData();
+    DatosValidar.append("CI", CI);
+
+    $.ajax({
+        url: "ajax/usuario.ajax.php",
+        method: "POST",
+        data: DatosValidar,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(response) {
+            if (response) {
+                $("#UICedulaIdentidad").parent().after('<div class="alert alert-danger">' +
+                    'Este usuario ya existe en la base de datos' +
+                    '</div>');
+                $("#UICedulaIdentidad").val("");
+            }
+        }
+    })
+
+}
